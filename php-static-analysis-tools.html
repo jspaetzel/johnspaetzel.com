@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>The top PHP static code analysis tools of 2021</title>
+  <meta name="description" content="The PHP community has a diverse ecosystem of static analysis tools which can make it somewhat difficult to decide which tools to use. Hopefully this post hel...">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="https://meh.dev/php-static-analysis-tools">
+  <link rel="alternate" type="application/rss+xml" title="meh.dev" href="https://meh.dev/feed.xml">
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+  <div class="wrapper">
+    <a class="site-title" href="/">
+      <img src="https://0.gravatar.com/avatar/ccf00de89ec54577fb9fd612358a9808?s=56">
+      meh.dev
+    </a>
+    <nav class="site-nav">
+      <a class="page-link" href="/cv">CV</a>
+      <a class="page-link" href="/archive">Archive</a>
+    </nav>
+  </div>
+</header>
+
+
+    <div class="wrapper">
+      
+
+<article class="post content-wrapper content-style-green" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">The top PHP static code analysis tools of 2021</h2>
+    <div class="post-meta">
+        <div class="post-meta-text">
+          <div class="post-meta-icon">
+            <i class="far fa-calendar"></i>
+          </div>
+          Posted on 
+          <time datetime="2021-03-11T09:38:15+00:00" itemprop="datePublished">
+            Mar 11, 2021
+          </time>
+        </div>
+        
+        
+        
+        
+        
+        <ul class="tag-list">
+          
+          <li class="inline"><a class="tag-list-link" href="/tag/PHP">PHP</a></li>
+          
+          <li class="inline"><a class="tag-list-link" href="/tag/CI">CI</a></li>
+          
+          <li class="inline"><a class="tag-list-link" href="/tag/Static Analysis">Static Analysis</a></li>
+          
+        </ul>
+        
+    </div>
+  </header>
+  
+  <div class="post-content" itemprop="articleBody">
+    <p>The PHP community has a diverse ecosystem of static analysis tools which can make it somewhat difficult to decide which tools to use. Hopefully this post helps you decide which of these tools you’ll use.</p>
+
+<p>This post separates these tools into one of two types depending on their purpose. The first section is static analysis for the purpose of identifying bugs. The later section is for maintenance of code style.</p>
+
+<h1 id="static-code-analysis-tools">Static Code Analysis Tools</h1>
+<ul>
+  <li>
+    <p><a href="https://github.com/phpstan/phpstan">PHPStan</a> is the most commonly used tool and also one of the youngest. It has been rapidly adopted since it’s release in 2016. It’ll discover bugs in your code without running the code.</p>
+  </li>
+  <li>
+    <p><a href="https://github.com/vimeo/psalm">Pslam</a> was also released in 2016 and has grown in popularity a little more slowly. It claims more features out of the box and has a focus is on type-related bugs.</p>
+  </li>
+  <li>
+    <p><a href="https://scrutinizer-ci.com/">Scrutinizer</a> is the most popular commercial option in use by open-source projects and has been around longer then it’s open-source counterparts. It’s free for open-source projects but is only available as a hosted solution.</p>
+  </li>
+  <li>
+    <p><a href="https://github.com/phan/phan">Phan</a> isn’t used by many of the projects I reviewed but is popular and well supported. It was created at Etsy and appears to be the primary tool used by Wikipedia’s MediaWiki project. The advertised upside of using Phan is that it has a focus on minimizing false-positives. This makes it trivial to use but it might catch fewer issues compared to the other options.</p>
+  </li>
+</ul>
+
+<p>Lets look at what some popular open-source PHP project use. This table only includes repositories which have at least 1K github stars, and which implement the static analysis tools as a component of their continuous integration systems.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>⭐</th>
+      <th><a href="https://github.com/phpstan/phpstan">PHPStan</a></th>
+      <th><a href="https://github.com/vimeo/psalm">Pslam</a></th>
+      <th><a href="https://scrutinizer-ci.com/">Scrutinizer</a></th>
+      <th><a href="https://github.com/phan/phan">Phan</a></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Composer</td>
+      <td>24.9K</td>
+      <td>✔️</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Symfony</td>
+      <td>24.8K</td>
+      <td> </td>
+      <td>✔️</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Guzzle</td>
+      <td>20.6K</td>
+      <td>✔️</td>
+      <td>✔️</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Monolog</td>
+      <td>18.5K</td>
+      <td>✔️</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>PHPUnit</td>
+      <td>17.2K</td>
+      <td> </td>
+      <td>✔️</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>NextCloud</td>
+      <td>13.7K</td>
+      <td> </td>
+      <td>✔️</td>
+      <td>✔️</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Yii</td>
+      <td>13.7K</td>
+      <td> </td>
+      <td> </td>
+      <td>✔️</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>PHPDotEnv</td>
+      <td>11.1K</td>
+      <td>✔️</td>
+      <td>✔️</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Slim</td>
+      <td>10.9K</td>
+      <td>✔️</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Doctrine</td>
+      <td>8.4K</td>
+      <td>✔️</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Assert</td>
+      <td>6.7K</td>
+      <td> </td>
+      <td>✔️</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Oauth2-Server</td>
+      <td>5.8K</td>
+      <td>✔️</td>
+      <td> </td>
+      <td>✔️</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>AWS SDK</td>
+      <td>5.1K</td>
+      <td>✔️</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Elasticsearch SDK</td>
+      <td>4.5K</td>
+      <td>✔️</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>php-amqplib</td>
+      <td>3.7K</td>
+      <td> </td>
+      <td> </td>
+      <td>✔️</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Stripe SDK</td>
+      <td>2.8K</td>
+      <td>✔️</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Mediawiki</td>
+      <td>2.4K*</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>✔️</td>
+    </tr>
+    <tr>
+      <td>Maxmind GeoIP2</td>
+      <td>1.8K</td>
+      <td>✔️</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Paratest</td>
+      <td>1.6K</td>
+      <td>✔️</td>
+      <td>✔️</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Sentry SDK</td>
+      <td>1.5K</td>
+      <td>✔️</td>
+      <td>✔️</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<p>There’s a few other fairly popular tools worth mentioning but which were not used by the projects above during CI.</p>
+<ul>
+  <li>
+    <p><a href="https://github.com/phpmd/phpmd">PHP Mess Detector</a>: This is an older static analysis tool which offers some different functionality. Besides identifying potential bugs it also can help identifying generally poor code. It’s very mature and may be more useful for targeted project analysis.</p>
+  </li>
+  <li>
+    <p><a href="https://www.sonarqube.org/">Sonarqube</a>: Sonarqube is another commercial static analysis product. It’s community edition is good at detecting bugs, vulnerabilities, and generally for improving code quality. They also provides an <a href="https://www.sonarlint.org/">IDE extension, Sonarlint</a> which works well to supplement the CI offerings.</p>
+  </li>
+  <li>
+    <p><a href="https://www.jetbrains.com/help/phpstorm/code-inspection.html">PHPStorm Code Inspections</a>: The inspection tools built into PHPStorm are impressive and can identify many potential issues without any additional tooling.</p>
+  </li>
+  <li>
+    <p><a href="https://github.com/kalessil/phpinspectionsea">PHP Inspections (EA Extended)</a>: This is a plugin for IntelliJ/PHPStorm which supplements the inspections built into PHPStorm.</p>
+  </li>
+</ul>
+
+<h1 id="style-tools">Style Tools</h1>
+
+<ul>
+  <li>
+    <p><a href="https://github.com/squizlabs/PHP_CodeSniffer">PHPCS</a> is the original code standards tool for PHP and dates back to 2006. It’s primary use is to establish standards and identify violations. It does however also provide a package <code class="language-plaintext highlighter-rouge">phpcbf</code> which can sometimes automatically fix violations. PHPCS is extremely mature and very flexible and comes with a massive selection of pre-written “Sniffs” available to use.</p>
+  </li>
+  <li>
+    <p><a href="https://github.com/FriendsOfPHP/PHP-CS-Fixer">PhpCsFixer</a> is supported by the popular Symfony framework. This tool automatically applies any defined code styles to code when it’s run. e.g. <code class="language-plaintext highlighter-rouge">php-cs-fixer fix src</code>. This seems to be the leading choice for a majority of projects.</p>
+  </li>
+  <li>
+    <p><a href="https://styleci.io/">StyleCI</a> is Laravel’s answer to code style. This is a hosted commercial solution which is free for open-source projects. It takes a similar approach to PhpCsFixer and can automatically apply a selected style to code. It’s different though in that it modifies code after it’s been merged into a git repository. It fixes styles quietly in the background as developers make changes by pulling the code, restyling it, and pushing it back to the main repository.</p>
+  </li>
+</ul>
+
+<p>Here’s a selection of some of the most popular packages using these today.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>⭐</th>
+      <th><a href="https://github.com/squizlabs/PHP_CodeSniffer">PHPCS</a></th>
+      <th><a href="https://github.com/FriendsOfPHP/PHP-CS-Fixer">PhpCsFixer</a></th>
+      <th><a href="https://styleci.io/">Style CI</a></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Laravel</td>
+      <td>64.2K</td>
+      <td> </td>
+      <td> </td>
+      <td>✔️</td>
+    </tr>
+    <tr>
+      <td>Composer</td>
+      <td>24.9K</td>
+      <td> </td>
+      <td>✔️</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Symfony</td>
+      <td>24.8K</td>
+      <td> </td>
+      <td>✔️</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Guzzle</td>
+      <td>20.6K</td>
+      <td> </td>
+      <td>✔️</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Monolog</td>
+      <td>18.5K</td>
+      <td> </td>
+      <td>✔️</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>PHPUnit</td>
+      <td>17.2K</td>
+      <td> </td>
+      <td>✔️</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Wordpress</td>
+      <td>14.8K*</td>
+      <td>✔️</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>NextCloud</td>
+      <td>13.7K</td>
+      <td> </td>
+      <td>✔️</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Yii</td>
+      <td>13.7K</td>
+      <td> </td>
+      <td>✔️</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Slim</td>
+      <td>10.9K</td>
+      <td>✔️</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Phalcon</td>
+      <td>10.4K</td>
+      <td>✔️</td>
+      <td>✔️</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Doctrine</td>
+      <td>8.4K</td>
+      <td>✔️</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>php-jwt</td>
+      <td>7.2K</td>
+      <td> </td>
+      <td>✔️</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Twig</td>
+      <td>7.1K</td>
+      <td> </td>
+      <td>✔️</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Assert</td>
+      <td>6.7K</td>
+      <td> </td>
+      <td>✔️</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Predis</td>
+      <td>6.7K</td>
+      <td> </td>
+      <td>✔️</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Oauth2-Server</td>
+      <td>5.8K</td>
+      <td> </td>
+      <td> </td>
+      <td>✔️</td>
+    </tr>
+    <tr>
+      <td>Elasticsearch</td>
+      <td>4.5K</td>
+      <td>✔️</td>
+      <td>✔️</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>php-amqplib</td>
+      <td>3.7K</td>
+      <td>✔️</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Drupal</td>
+      <td>3.5K*</td>
+      <td>✔️</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Stripe SDK</td>
+      <td>2.8K</td>
+      <td> </td>
+      <td>✔️</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Mediawiki</td>
+      <td>2.4K</td>
+      <td>✔️</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Maxmind GeoIP2</td>
+      <td>1.8K</td>
+      <td>✔️</td>
+      <td>✔️</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Paratest</td>
+      <td>1.6K</td>
+      <td>✔️</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Sentry SDK</td>
+      <td>1.5K</td>
+      <td> </td>
+      <td>✔️</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="conclusion">Conclusion</h1>
+<p>The most popular tools to use overall appear to be PHPStan &amp; PhpCsFixer.</p>
+
+<p>However it’s not a one size fit all solution. Pslam appears to be gaining popularity among projects and is often used alongside PHPStan. And for enforcing code standards PhpCsFixer is the most popular but it’s still often paired with PHPCS which has more complex configuration options.</p>
+
+<p>The details in this post will probably not stay up to date for very long since the ecosystem is constantly evolving but I found this analysis interesting when reviewing these tools for my own usage. If you have feedback or can correct me about any of the information in this post please leave me a comment.</p>
+
+
+    
+
+    
+    
+  </div>
+
+  
+
+  <div id="disqus_thread"></div>
+  <script>
+  var disqus_config = function () {
+    this.page.url = "https://meh.dev/php-static-analysis-tools";
+    this.page.identifier = '/php-static-analysis-tools';
+  };
+  (function() {
+  var d = document, s = d.createElement('script');
+  s.src = 'https://jspaetzel.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+  })();
+  </script>
+  <noscript>Please enable JavaScript to view comments</noscript>
+  <script id="dsq-count-scr" src="//jspaetzel.disqus.com/count.js" async></script>
+</article>
+
+
+    </div>
+
+    <footer class="footer">
+    <div class="copyright">© 2021  <i class="fas fa-heart"></i>  John Spaetzel</div>
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+<script>
+  WebFont.load({
+    google: {
+      families: ['Josefin Sans', 'Noto Sans', 'Roboto Mono', 'Material Icons']
+    }
+  });
+</script>
+<script src="https://kit.fontawesome.com/ea17bff308.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-W3G88JG6ZH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-W3G88JG6ZH');
+</script>
+
+  </body>
+
+</html>

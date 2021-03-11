@@ -1,27 +1,1222 @@
----
-layout: null
----
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>{{ site.title | xml_escape }}</title>
-    <description>{{ site.description | xml_escape }}</description>
-    <link>{{ site.url }}{{ site.baseurl }}/</link>
-    <atom:link href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}" rel="self" type="application/rss+xml"/>
-    <pubDate>{{ site.time | date_to_rfc822 }}</pubDate>
-    <lastBuildDate>{{ site.time | date_to_rfc822 }}</lastBuildDate>
-    <generator>Jekyll v{{ jekyll.version }}</generator>
-    {% for post in site.posts limit:10 %}
+    <title>meh.dev</title>
+    <description></description>
+    <link>https://meh.dev/</link>
+    <atom:link href="https://meh.dev/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Thu, 11 Mar 2021 10:36:57 +0000</pubDate>
+    <lastBuildDate>Thu, 11 Mar 2021 10:36:57 +0000</lastBuildDate>
+    <generator>Jekyll v4.2.0</generator>
+    
       <item>
-        <title>{{ post.title | xml_escape }}</title>
-        <description>{{ post.content | xml_escape }}</description>
-        <pubDate>{{ post.date | date_to_rfc822 }}</pubDate>
-        <link>{{ post.url | prepend: site.baseurl | prepend: site.url }}</link>
-        <guid isPermaLink="true">{{ post.url | prepend: site.baseurl | prepend: site.url }}</guid>
-        {% for tag in post.tags %}
-        <category>{{ tag | xml_escape }}</category>
-        {% endfor %}
+        <title>The top PHP static code analysis tools of 2021</title>
+        <description>&lt;p&gt;The PHP community has a diverse ecosystem of static analysis tools which can make it somewhat difficult to decide which tools to use. Hopefully this post helps you decide which of these tools you’ll use.&lt;/p&gt;
+
+&lt;p&gt;This post separates these tools into one of two types depending on their purpose. The first section is static analysis for the purpose of identifying bugs. The later section is for maintenance of code style.&lt;/p&gt;
+
+&lt;h1 id=&quot;static-code-analysis-tools&quot;&gt;Static Code Analysis Tools&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://github.com/phpstan/phpstan&quot;&gt;PHPStan&lt;/a&gt; is the most commonly used tool and also one of the youngest. It has been rapidly adopted since it’s release in 2016. It’ll discover bugs in your code without running the code.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://github.com/vimeo/psalm&quot;&gt;Pslam&lt;/a&gt; was also released in 2016 and has grown in popularity a little more slowly. It claims more features out of the box and has a focus is on type-related bugs.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://scrutinizer-ci.com/&quot;&gt;Scrutinizer&lt;/a&gt; is the most popular commercial option in use by open-source projects and has been around longer then it’s open-source counterparts. It’s free for open-source projects but is only available as a hosted solution.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://github.com/phan/phan&quot;&gt;Phan&lt;/a&gt; isn’t used by many of the projects I reviewed but is popular and well supported. It was created at Etsy and appears to be the primary tool used by Wikipedia’s MediaWiki project. The advertised upside of using Phan is that it has a focus on minimizing false-positives. This makes it trivial to use but it might catch fewer issues compared to the other options.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Lets look at what some popular open-source PHP project use. This table only includes repositories which have at least 1K github stars, and which implement the static analysis tools as a component of their continuous integration systems.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt;⭐&lt;/th&gt;
+      &lt;th&gt;&lt;a href=&quot;https://github.com/phpstan/phpstan&quot;&gt;PHPStan&lt;/a&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;a href=&quot;https://github.com/vimeo/psalm&quot;&gt;Pslam&lt;/a&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;a href=&quot;https://scrutinizer-ci.com/&quot;&gt;Scrutinizer&lt;/a&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;a href=&quot;https://github.com/phan/phan&quot;&gt;Phan&lt;/a&gt;&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Composer&lt;/td&gt;
+      &lt;td&gt;24.9K&lt;/td&gt;
+      &lt;td&gt;✔️&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Symfony&lt;/td&gt;
+      &lt;td&gt;24.8K&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;✔️&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Guzzle&lt;/td&gt;
+      &lt;td&gt;20.6K&lt;/td&gt;
+      &lt;td&gt;✔️&lt;/td&gt;
+      &lt;td&gt;✔️&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Monolog&lt;/td&gt;
+      &lt;td&gt;18.5K&lt;/td&gt;
+      &lt;td&gt;✔️&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;PHPUnit&lt;/td&gt;
+      &lt;td&gt;17.2K&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;✔️&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;NextCloud&lt;/td&gt;
+      &lt;td&gt;13.7K&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;✔️&lt;/td&gt;
+      &lt;td&gt;✔️&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Yii&lt;/td&gt;
+      &lt;td&gt;13.7K&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;✔️&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;PHPDotEnv&lt;/td&gt;
+      &lt;td&gt;11.1K&lt;/td&gt;
+      &lt;td&gt;✔️&lt;/td&gt;
+      &lt;td&gt;✔️&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Slim&lt;/td&gt;
+      &lt;td&gt;10.9K&lt;/td&gt;
+      &lt;td&gt;✔️&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Doctrine&lt;/td&gt;
+      &lt;td&gt;8.4K&lt;/td&gt;
+      &lt;td&gt;✔️&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Assert&lt;/td&gt;
+      &lt;td&gt;6.7K&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;✔️&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Oauth2-Server&lt;/td&gt;
+      &lt;td&gt;5.8K&lt;/td&gt;
+      &lt;td&gt;✔️&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;✔️&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;AWS SDK&lt;/td&gt;
+      &lt;td&gt;5.1K&lt;/td&gt;
+      &lt;td&gt;✔️&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Elasticsearch SDK&lt;/td&gt;
+      &lt;td&gt;4.5K&lt;/td&gt;
+      &lt;td&gt;✔️&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;php-amqplib&lt;/td&gt;
+      &lt;td&gt;3.7K&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;✔️&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Stripe SDK&lt;/td&gt;
+      &lt;td&gt;2.8K&lt;/td&gt;
+      &lt;td&gt;✔️&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Mediawiki&lt;/td&gt;
+      &lt;td&gt;2.4K*&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;✔️&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Maxmind GeoIP2&lt;/td&gt;
+      &lt;td&gt;1.8K&lt;/td&gt;
+      &lt;td&gt;✔️&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Paratest&lt;/td&gt;
+      &lt;td&gt;1.6K&lt;/td&gt;
+      &lt;td&gt;✔️&lt;/td&gt;
+      &lt;td&gt;✔️&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Sentry SDK&lt;/td&gt;
+      &lt;td&gt;1.5K&lt;/td&gt;
+      &lt;td&gt;✔️&lt;/td&gt;
+      &lt;td&gt;✔️&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;There’s a few other fairly popular tools worth mentioning but which were not used by the projects above during CI.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://github.com/phpmd/phpmd&quot;&gt;PHP Mess Detector&lt;/a&gt;: This is an older static analysis tool which offers some different functionality. Besides identifying potential bugs it also can help identifying generally poor code. It’s very mature and may be more useful for targeted project analysis.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://www.sonarqube.org/&quot;&gt;Sonarqube&lt;/a&gt;: Sonarqube is another commercial static analysis product. It’s community edition is good at detecting bugs, vulnerabilities, and generally for improving code quality. They also provides an &lt;a href=&quot;https://www.sonarlint.org/&quot;&gt;IDE extension, Sonarlint&lt;/a&gt; which works well to supplement the CI offerings.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://www.jetbrains.com/help/phpstorm/code-inspection.html&quot;&gt;PHPStorm Code Inspections&lt;/a&gt;: The inspection tools built into PHPStorm are impressive and can identify many potential issues without any additional tooling.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://github.com/kalessil/phpinspectionsea&quot;&gt;PHP Inspections (EA Extended)&lt;/a&gt;: This is a plugin for IntelliJ/PHPStorm which supplements the inspections built into PHPStorm.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;style-tools&quot;&gt;Style Tools&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://github.com/squizlabs/PHP_CodeSniffer&quot;&gt;PHPCS&lt;/a&gt; is the original code standards tool for PHP and dates back to 2006. It’s primary use is to establish standards and identify violations. It does however also provide a package &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;phpcbf&lt;/code&gt; which can sometimes automatically fix violations. PHPCS is extremely mature and very flexible and comes with a massive selection of pre-written “Sniffs” available to use.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://github.com/FriendsOfPHP/PHP-CS-Fixer&quot;&gt;PhpCsFixer&lt;/a&gt; is supported by the popular Symfony framework. This tool automatically applies any defined code styles to code when it’s run. e.g. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;php-cs-fixer fix src&lt;/code&gt;. This seems to be the leading choice for a majority of projects.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://styleci.io/&quot;&gt;StyleCI&lt;/a&gt; is Laravel’s answer to code style. This is a hosted commercial solution which is free for open-source projects. It takes a similar approach to PhpCsFixer and can automatically apply a selected style to code. It’s different though in that it modifies code after it’s been merged into a git repository. It fixes styles quietly in the background as developers make changes by pulling the code, restyling it, and pushing it back to the main repository.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Here’s a selection of some of the most popular packages using these today.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt;⭐&lt;/th&gt;
+      &lt;th&gt;&lt;a href=&quot;https://github.com/squizlabs/PHP_CodeSniffer&quot;&gt;PHPCS&lt;/a&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;a href=&quot;https://github.com/FriendsOfPHP/PHP-CS-Fixer&quot;&gt;PhpCsFixer&lt;/a&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;a href=&quot;https://styleci.io/&quot;&gt;Style CI&lt;/a&gt;&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Laravel&lt;/td&gt;
+      &lt;td&gt;64.2K&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;✔️&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Composer&lt;/td&gt;
+      &lt;td&gt;24.9K&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;✔️&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Symfony&lt;/td&gt;
+      &lt;td&gt;24.8K&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;✔️&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Guzzle&lt;/td&gt;
+      &lt;td&gt;20.6K&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;✔️&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Monolog&lt;/td&gt;
+      &lt;td&gt;18.5K&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;✔️&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;PHPUnit&lt;/td&gt;
+      &lt;td&gt;17.2K&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;✔️&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Wordpress&lt;/td&gt;
+      &lt;td&gt;14.8K*&lt;/td&gt;
+      &lt;td&gt;✔️&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;NextCloud&lt;/td&gt;
+      &lt;td&gt;13.7K&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;✔️&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Yii&lt;/td&gt;
+      &lt;td&gt;13.7K&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;✔️&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Slim&lt;/td&gt;
+      &lt;td&gt;10.9K&lt;/td&gt;
+      &lt;td&gt;✔️&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Phalcon&lt;/td&gt;
+      &lt;td&gt;10.4K&lt;/td&gt;
+      &lt;td&gt;✔️&lt;/td&gt;
+      &lt;td&gt;✔️&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Doctrine&lt;/td&gt;
+      &lt;td&gt;8.4K&lt;/td&gt;
+      &lt;td&gt;✔️&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;php-jwt&lt;/td&gt;
+      &lt;td&gt;7.2K&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;✔️&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Twig&lt;/td&gt;
+      &lt;td&gt;7.1K&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;✔️&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Assert&lt;/td&gt;
+      &lt;td&gt;6.7K&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;✔️&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Predis&lt;/td&gt;
+      &lt;td&gt;6.7K&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;✔️&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Oauth2-Server&lt;/td&gt;
+      &lt;td&gt;5.8K&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;✔️&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Elasticsearch&lt;/td&gt;
+      &lt;td&gt;4.5K&lt;/td&gt;
+      &lt;td&gt;✔️&lt;/td&gt;
+      &lt;td&gt;✔️&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;php-amqplib&lt;/td&gt;
+      &lt;td&gt;3.7K&lt;/td&gt;
+      &lt;td&gt;✔️&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Drupal&lt;/td&gt;
+      &lt;td&gt;3.5K*&lt;/td&gt;
+      &lt;td&gt;✔️&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Stripe SDK&lt;/td&gt;
+      &lt;td&gt;2.8K&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;✔️&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Mediawiki&lt;/td&gt;
+      &lt;td&gt;2.4K&lt;/td&gt;
+      &lt;td&gt;✔️&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Maxmind GeoIP2&lt;/td&gt;
+      &lt;td&gt;1.8K&lt;/td&gt;
+      &lt;td&gt;✔️&lt;/td&gt;
+      &lt;td&gt;✔️&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Paratest&lt;/td&gt;
+      &lt;td&gt;1.6K&lt;/td&gt;
+      &lt;td&gt;✔️&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Sentry SDK&lt;/td&gt;
+      &lt;td&gt;1.5K&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;✔️&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h1 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h1&gt;
+&lt;p&gt;The most popular tools to use overall appear to be PHPStan &amp;amp; PhpCsFixer.&lt;/p&gt;
+
+&lt;p&gt;However it’s not a one size fit all solution. Pslam appears to be gaining popularity among projects and is often used alongside PHPStan. And for enforcing code standards PhpCsFixer is the most popular but it’s still often paired with PHPCS which has more complex configuration options.&lt;/p&gt;
+
+&lt;p&gt;The details in this post will probably not stay up to date for very long since the ecosystem is constantly evolving but I found this analysis interesting when reviewing these tools for my own usage. If you have feedback or can correct me about any of the information in this post please leave me a comment.&lt;/p&gt;
+</description>
+        <pubDate>Thu, 11 Mar 2021 09:38:15 +0000</pubDate>
+        <link>https://meh.dev/php-static-analysis-tools</link>
+        <guid isPermaLink="true">https://meh.dev/php-static-analysis-tools</guid>
+        
+        <category>PHP</category>
+        
+        <category>CI</category>
+        
+        <category>Static Analysis</category>
+        
       </item>
-    {% endfor %}
+    
+      <item>
+        <title>2020 Retrospective</title>
+        <description>&lt;p&gt;It’s 2021 and time to reflect on 2020. Sometimes I start these posts early in December but this year I was so busy throughout December that I didn’t even think about it until mid-January.&lt;/p&gt;
+
+&lt;p&gt;This post is part of a series, want to look back further? Checkout my previous years:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;2019-reflection&quot;&gt;2019 Reflection&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;2018-retrospective&quot;&gt;2018 Retrospective&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;2017-wear-flowers-in-your-hair&quot;&gt;2017 Wear some flowers in your hair&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;2016-a-full-stack-year&quot;&gt;2016 A Full Stack Year&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;what-happened-in-2020&quot;&gt;What happened in 2020?&lt;/h2&gt;
+&lt;p&gt;Overall 2020 was not bad for me!&lt;/p&gt;
+
+&lt;p&gt;I spent a lot of time at home, I walked around and truly enjoyed my neighborhood. It’s quirky and beautiful!&lt;/p&gt;
+
+&lt;div class=&quot;quoted-image&quot; style=&quot;width:px;&quot;&gt;
+    &lt;img src=&quot;/assets/2020-retro/collage-neighborhood.jpg&quot; alt=&quot;A few shots from around Castro&quot; /&gt;
+    &lt;span&gt;A few shots from around Castro&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;p&gt;I still traveled some. I &lt;a href=&quot;maui-during-pandemic&quot;&gt;made it Maui&lt;/a&gt; with my roommate. I also did a fair bit of domestic travel which included LOTS of driving. I went with my sister on our first cross country road-trip from D.C. to San Francisco.&lt;/p&gt;
+
+&lt;div class=&quot;quoted-image&quot; style=&quot;width:px;&quot;&gt;
+    &lt;img src=&quot;/assets/2020-retro/2020-map.png&quot; alt=&quot;A map of all of my 2020 Travel&quot; /&gt;
+    &lt;span&gt;A map of all of my 2020 Travel&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;p&gt;I shutdown a long term &lt;a href=&quot;era-of-hosting&quot;&gt;side project&lt;/a&gt;. Closing it down was hard but worthwhile. I’ve got &lt;a href=&quot;enlio&quot;&gt;one more long-term project&lt;/a&gt; that I’m shuttering before the end of 2021. I’m hopeful that having fewer ongoing projects will give me more time to start some a new one.&lt;/p&gt;
+
+&lt;p&gt;I increased my open-source contributions in 2020 and &lt;a href=&quot;https://github.com/federico-terzi/modulo&quot;&gt;contributed&lt;/a&gt; &lt;a href=&quot;https://github.com/lightSAML/lightSAML&quot;&gt;to&lt;/a&gt; &lt;a href=&quot;https://github.com/symfony/symfony-docs&quot;&gt;several&lt;/a&gt; &lt;a href=&quot;https://github.com/autokey/autokey&quot;&gt;projects&lt;/a&gt; that aren’t my own. This is the first year where I have felt truly confident when contributing to other open-source projects and I want to continue this in 2021 with more substantial contributions.&lt;/p&gt;
+
+&lt;p&gt;My goals for 2020 were pretty slim, which is fortunate since 2020 went off the rails. Here’s how I did..&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Promoted to Senior Software Engineer at work. ✔️&lt;/li&gt;
+  &lt;li&gt;Health-wise I failed, I stopped biking to work when we started working from home and I haven’t been to the gym. I have been running occasionally but less then previously. ❌&lt;/li&gt;
+  &lt;li&gt;I re-modeled my personal website some, there’s still room for improvement but there always will be. I cheated a little and switched domains while writing this post so johnspaetzel.com is now meh.dev. ✔️&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;whats-next-for-2021&quot;&gt;What’s next for 2021?&lt;/h2&gt;
+
+&lt;p&gt;I don’t really know, the pandemic is still raging, and although a vaccine is now being distributed it’ll be a while before things return fully to normal. As I write this the bay area is just coming down from it’s highest case surge.&lt;/p&gt;
+
+&lt;div class=&quot;quoted-image&quot; style=&quot;width:px;&quot;&gt;
+    &lt;img src=&quot;/assets/2020-retro/covid-cases.png&quot; alt=&quot;Graph of new COVID-19 Cases in the Bay Area as of January 25th, 2021&quot; /&gt;
+    &lt;span&gt;Graph of new COVID-19 Cases in the Bay Area as of January 25th, 2021&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;p&gt;I’m hoping to travel more internationally but probably not until the later half of the year. I’m looking forward to visiting my family again in Florida hopefully at some point as well, though I’ll probably wait to be vaccinated before visiting.&lt;/p&gt;
+
+&lt;p&gt;In December I worked on some new investments, consolidated work &amp;amp; personal cell phones, and I switched health insurance providers to a lower cost more convenient option. Basically I decided it’s a good time to stop procrastinating. Continuing this trend in January I want to spend time spring cleaning and sell or donate anything that I haven’t used in the last few years. I also want to do do some upgrades to my home office such as get a new webcam, mic, and maybe new desk.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;I decided it’s a good time to stop procrastinating.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;I want to &lt;strong&gt;simplify my life&lt;/strong&gt; and switch operating systems so that I use them same one for personal and work. Context switching between MacOS, Windows, and Ubuntu has made life more difficult then I like to admit. Even for simple things like writing this post, &lt;strong&gt;fragmentation made things more difficult&lt;/strong&gt; since my build tool-chain wasn’t readily available in Windows.&lt;/p&gt;
+
+&lt;p&gt;I’ve been working from home for the last 9 months since our offices closed. I still haven’t quite settled into a work routine that works well. This isn’t ideal and I need to make more of an effort to &lt;strong&gt;create separate space for work&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;I still want to exercise more regularly and develop some good habits, one of these that I think I’ll need to make an effort on is to &lt;strong&gt;do regular meal planning&lt;/strong&gt;. Since im working from home every day it would be quite a bit better if I cooked at home regularly and ordered less take-out.&lt;/p&gt;
+
+&lt;h1 id=&quot;in-conclusion&quot;&gt;In… Conclusion?&lt;/h1&gt;
+
+&lt;p&gt;2021 feels like a continuation of 2020 which was put on hold by the pandemic. I think 2021 will be an optimization cycle without really specific goals. I want to upgrade all the little things in my life that could be better so that when opportunity or inspiration strikes I’ll be at my best.&lt;/p&gt;
+</description>
+        <pubDate>Mon, 25 Jan 2021 22:05:40 +0000</pubDate>
+        <link>https://meh.dev/2020-retro</link>
+        <guid isPermaLink="true">https://meh.dev/2020-retro</guid>
+        
+        <category>Year in Review</category>
+        
+      </item>
+    
+      <item>
+        <title>I visited Maui during the pandemic</title>
+        <description>&lt;p&gt;I’d never been to Hawaii or Maui before this year even though it’s a meer 5 hour flight and since I hadn’t done very much travel otherwise this year I jumped at the opportunity when my roommate suggested we go.&lt;/p&gt;
+
+&lt;p&gt;Because of the COVID-19 pandemic it was particularly cheap to travel and staying on the island was also cheaper then usual. Hawaii has been particularly cautious about trying to prevent the spread of the virus, and their efforts have been effective. Most of the Hawaiian islands have a dramatically lower infection-rate then the rest of the United States.&lt;/p&gt;
+
+&lt;p&gt;Hawaii should be extra cautious. They’re isolated and have much more control over who comes in and out of the islands compared to most states. They also have extra incentive to protect residents. Hawaii’s population is steadily aging at a faster rate then most of the United States. &lt;a href=&quot;https://web.archive.org/web/20201017121959/https://census.hawaii.gov/wp-content/uploads/2020/06/Hawaii-Population-Characteristics-2019.pdf&quot;&gt;From 2010 to 2019 the elderly population (65+) of Hawaii grew by 62.3%&lt;/a&gt;. This older population is also disproportionately affected by the pandemic which are &lt;a href=&quot;https://web.archive.org/web/20201201020338/https://www.cdc.gov/coronavirus/2019-ncov/need-extra-precautions/older-adults.html&quot;&gt;90x more at risk of dying from COVID-19&lt;/a&gt; compared to young adults.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;./assets/maui/covid_jeep.jpg&quot; alt=&quot;COVID Jeep&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;getting-there-safely&quot;&gt;Getting there safely&lt;/h1&gt;
+
+&lt;p&gt;As the pandemic as worn on they’ve found ways of letting individuals visit safely. The way we traveled required us to “Arrive Healthy” and prove that by having a test within 72 hours of traveling. Once the results were received we then had to submit the test results on the Hawaii state “Safe Travels” website and await review.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Arrive Healthy: Mandatory pre-departure test submitted 72 hours prior to departing for Maui County.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;When our flight landed we were still awaiting test results so we took a Lyft directly to where we were staying.&lt;/p&gt;
+
+&lt;p&gt;The Hawaiian governor has been writing a series of supplementary &lt;a href=&quot;https://web.archive.org/web/20201115120318/https://governor.hawaii.gov/wp-content/uploads/2020/03/2003109-ATG_COVID-19-Supplementary-Proclamation-signed.pdf&quot;&gt;emergency proclamations&lt;/a&gt; which change policies throughout the islands. One of the policies the Hawaiian government set was to prevent car rentals for anyone who’s not exempt from quarantine. We weren’t aware of this before traveling so were surprised we weren’t able to get a car initially and had to take a fairly expensive Lyft to where we were staying while we waited for test results.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;./assets/maui/quarantine.jpg&quot; alt=&quot;Maui Quarantining&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;quaratining&quot;&gt;Quaratining&lt;/h1&gt;
+
+&lt;p&gt;We wound up having to Quarantine for about 2 days.&lt;/p&gt;
+
+&lt;p&gt;Test results can vary in how long they take to be returned, in our case we were expecting them to come through within 24 - 72 hours so we took the tests about 48 hours before traveling. My results wound up taking about 72 hours and my roommate’s took almost a day longer then that. Apparently some results can take as long as 14 days though so there’s some risk of getting stuck waiting.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Some test results can take as long as 14 days to be processed by labs&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;While Quarantining you’re not allowed to leave to buy groceries or food. Delivery services on the islands can be lacking but there are a few services that provide delivery of most items. I wish I knew about &lt;a href=&quot;https://www.fooddeliverymaui.com/&quot;&gt;808 PickUps&lt;/a&gt; sooner which is a local business like DoorDash but with a larger local selection. Other services like Instacart also work fine for larger grocery deliveries.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;./assets/maui/quarantine_2.jpg&quot; alt=&quot;Maui Quarantining 2&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;exploring-the-island&quot;&gt;Exploring the island&lt;/h1&gt;
+
+&lt;p&gt;Once we left quarantine the island was fabulous. We only got stuck in traffic once where there was a construction closure and otherwise much of the island felt like a private paradise. Although it wasn’t busy anywhere many parking lots were still filling up pretty well. I was surprised when locals told us they were only at about 5% of the tourism capacity. I imagine with a full load of visitors it must be hell driving around so I understand some of the local disdain for tourists.&lt;/p&gt;
+
+&lt;p&gt;We didn’t have any negative experiences on the island but you could tell there was some tension in the air at some venues. Some locals were cautious but most were going about their business like it was any other year. Before we arrived many businesses had only just reopened within the last several weeks, or were still in the process of opening, and just as many were still closed.&lt;/p&gt;
+
+&lt;p&gt;In the more remote parts of the island and on the beaches we didn’t see many masks at all. This is about what we’d expected but I was still a little surprising considering the otherwise severe rules for entry to the island. At one bar it looked like business as usual, a packed house with no social distancing.&lt;/p&gt;
+
+&lt;p&gt;I wish I planned for a longer stay, but im back home now and brought COVID back with me. (Just this cute plushie!)&lt;/p&gt;
+
+</description>
+        <pubDate>Tue, 01 Dec 2020 22:57:24 +0000</pubDate>
+        <link>https://meh.dev/maui-during-pandemic</link>
+        <guid isPermaLink="true">https://meh.dev/maui-during-pandemic</guid>
+        
+        <category>Travel</category>
+        
+      </item>
+    
+      <item>
+        <title>Linuxisms</title>
+        <description>&lt;p&gt;This is a living post about linux topics which inhibit linux distros from reaching the masses and my take on them. In no particular order…&lt;/p&gt;
+
+&lt;h1 id=&quot;packaging&quot;&gt;Packaging&lt;/h1&gt;
+&lt;p&gt;Having access to quality packages is my favorite things about using linux. But it comes with some issues.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;A big issue is the support between distributions. Ubuntu is pretty ubiquitously supported but most distros are not.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;For Ubuntu users their distro is most likely supported but the way to install an application is not universal. This is actually getting somewhat worse currently. Many applications are now distributed via snap, apt, AppImages, or a plain old binary.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Another drawback is for maintainers, it’s super complex for a popular package to support every potential distro which takes time away from their project. This makes development less popular and harder for the ones willing to do it.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;updates&quot;&gt;Updates&lt;/h1&gt;
+&lt;p&gt;Linux makes updates scarier then they need to be by displaying too much information.&lt;/p&gt;
+
+&lt;p&gt;Information overload is a real thing and it can scare people away from upgrading or scare people away entirely.&lt;/p&gt;
+
+&lt;p&gt;One nuisance I have with distribution updates (at least on Ubuntu) is that custom sources added to apt get disabled with each update. Then I have to manually inspect and re-enable each one.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;./assets/linuxisms/ubuntu-install.png&quot; alt=&quot;Ubuntu Updater&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I actually kinda enjoy seeing what’s being updated, but this is somewhat a regression for Google Chrome which receives updates so regularly. On Windows and Linux it just updates itself and occasionally prompts to be restarted. On linux having to wait for me to trigger it’s update besides being inconvenient is also a security hazard. 👎&lt;/p&gt;
+
+&lt;h1 id=&quot;graphics-drivers&quot;&gt;Graphics drivers&lt;/h1&gt;
+&lt;p&gt;The graphics drivers on linux are getting pretty great and I think this is almost a solved problem as of 2020.&lt;/p&gt;
+
+&lt;p&gt;The main hurdle is for proprietary drivers which don’t typically come preinstalled. Some distros are now including these drivers though or have easy way to install them which mostly resolves this issue.&lt;/p&gt;
+
+&lt;p&gt;Information overload is still an issue with this too. Custom drivers still require the user to click some things to install them, it’s not quite plug &amp;amp; play.&lt;/p&gt;
+
+&lt;h1 id=&quot;enterprise&quot;&gt;Enterprise&lt;/h1&gt;
+&lt;p&gt;Enterprise support is pretty lacking still, a lot of the host management that IT departments want doesn’t work well or isn’t sufficient especially for power users who cant have a totally locked down environment.&lt;/p&gt;
+</description>
+        <pubDate>Sat, 14 Nov 2020 19:01:47 +0000</pubDate>
+        <link>https://meh.dev/linuxisms</link>
+        <guid isPermaLink="true">https://meh.dev/linuxisms</guid>
+        
+        <category>Linux</category>
+        
+      </item>
+    
+      <item>
+        <title>What i use</title>
+        <description>&lt;p&gt;This is a living post for what I use frequently, probably everyday. I’ll update this periodically and welcome suggestions for improvements.&lt;/p&gt;
+
+&lt;h2 id=&quot;systems&quot;&gt;Systems&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;Lenovo Thinkpad X1 Carbon with Ubuntu 20.10 ❤️&lt;/li&gt;
+  &lt;li&gt;Macbook Pro with Ubuntu 20.10, Windows 10&lt;/li&gt;
+  &lt;li&gt;Pixel 3 ❤️&lt;/li&gt;
+  &lt;li&gt;iPhone 8&lt;/li&gt;
+  &lt;li&gt;Ubiquity UniFi ❤️&lt;/li&gt;
+  &lt;li&gt;Sonnet Breakaway box with Nvidia 1070 ❤️&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I prefer to work in Ubuntu but my personal laptop is a Macbook Pro which I got in 2017. It runs Ubuntu pretty well so I’ve kept it around. I also use it for gaming which is why I have a tri-boot configuration.&lt;/p&gt;
+
+&lt;p&gt;I have an iPhone from work but my main device is the Pixel 3. I’ve kept the iPhone because I like to compare functionality side-by-side and it’s also handy to have a backup device on a different network provider.&lt;/p&gt;
+
+&lt;h2 id=&quot;developer-tools&quot;&gt;Developer Tools&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;IDE: PHPStorm 💲❤️&lt;/li&gt;
+  &lt;li&gt;Editor: VS Code&lt;/li&gt;
+  &lt;li&gt;Terminal: Terminator&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;software&quot;&gt;Software&lt;/h2&gt;
+&lt;p&gt;The software listed here are the essentials that are I use everyday that I want to endorse.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Firefox mobile and desktop for my browser&lt;/li&gt;
+  &lt;li&gt;AutoKey for autocomplete ❤️&lt;/li&gt;
+  &lt;li&gt;CopyQ for clipboard management&lt;/li&gt;
+  &lt;li&gt;Dropbox for file storage&lt;/li&gt;
+  &lt;li&gt;Dropbox Paper for shared notes ❤️&lt;/li&gt;
+  &lt;li&gt;Flameshot for screenshots&lt;/li&gt;
+  &lt;li&gt;Authy for 2FA ❤️&lt;/li&gt;
+  &lt;li&gt;Spotify for music 💲❤️&lt;/li&gt;
+  &lt;li&gt;1Password for passwords 💲&lt;/li&gt;
+  &lt;li&gt;Standard Notes for taking notes 💲❤️&lt;/li&gt;
+  &lt;li&gt;Google Keep for notes with reminders&lt;/li&gt;
+  &lt;li&gt;Google Calendar ❤️&lt;/li&gt;
+  &lt;li&gt;Google Photos ❤️&lt;/li&gt;
+  &lt;li&gt;Gmail for email&lt;/li&gt;
+  &lt;li&gt;Pocket Casts&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;legend&quot;&gt;Legend&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;💲 are monthly or annual subscriptions&lt;/li&gt;
+  &lt;li&gt;❤️ are things that I love&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Fri, 26 Jun 2020 07:49:38 +0000</pubDate>
+        <link>https://meh.dev/what-i-use</link>
+        <guid isPermaLink="true">https://meh.dev/what-i-use</guid>
+        
+        <category>Software Stack</category>
+        
+      </item>
+    
+      <item>
+        <title>Shutting down my web hosting services</title>
+        <description>&lt;h1 id=&quot;how-it-started&quot;&gt;How it started&lt;/h1&gt;
+
+&lt;p&gt;I got involved in developing and hosting websites when I was pretty young. Surprisingly I’ve managed to save copies of almost everything I’ve ever written. The earliest sites actually run best still because they have the fewest dependencies.&lt;/p&gt;
+
+&lt;p&gt;My first website was a flash game website which never made it online, it was an HTML website which I distributed to some friends on re-writable CD-Rom discs. At the time my internet home was dial-up with a 56k modem and we only had one phone line. I could only get on for brief periods.&lt;/p&gt;
+
+&lt;p&gt;I started this project learning how to save copies of web pages, but the problem with a saved website is that links don’t work without internet. And I wanted the links to work, I wanted to simulate the being online. So I created my own website and embedded all of the content I wanted.&lt;/p&gt;
+
+&lt;p&gt;In order to do this I’d save a bunch of web pages and then I’d take them apart and put them back together to create a website! It worked out alright!&lt;/p&gt;
+
+&lt;div class=&quot;quoted-image&quot; style=&quot;width:px;&quot;&gt;
+    &lt;img src=&quot;/assets/old-websites/gamesilike.png&quot; alt=&quot;Games I Like&quot; /&gt;
+    &lt;span&gt;Games I Like&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Some of the files from this website are dated 2002, so I think I was probably 7 or 8 years old. I got into Flash development for a while after this and built a few other sites that also never went online.&lt;/p&gt;
+
+&lt;h1 id=&quot;and-then-we-got-broadband&quot;&gt;And then we got broadband&lt;/h1&gt;
+
+&lt;p&gt;I got broadband sometime around highschool and quickly got into online gaming. I built a fan website which turned out be my first domain registration on Mar 21, 2008. knowhalo.com.&lt;/p&gt;
+
+&lt;p&gt;This site went through many-many iterations, and miraculously I can’t find any decent screenshots. If I find some I’ll post them. At some point or another it ran &lt;a href=&quot;https://www.joomla.org/&quot;&gt;Joomla&lt;/a&gt;, &lt;a href=&quot;https://www.drupal.org/&quot;&gt;Drupal&lt;/a&gt;, &lt;a href=&quot;https://www.phpbb.com/&quot;&gt;phpBB&lt;/a&gt;, and probably a half dozen other content management systems.&lt;/p&gt;
+
+&lt;p&gt;To build that website I needed website hosting and being jobless I went with a free webhost named 110mb.com. The 110mb website is long gone but the service gave extremely basic free hosting with 110mb of storage for free. It was also a Post2Host service which meant that if you were an active member of the community forum they would give you additional “free” upgrades.&lt;/p&gt;
+
+&lt;p&gt;In a couple of years I outgrew this free sandbox and paid for a virtual private server (VPS).&lt;/p&gt;
+
+&lt;h1 id=&quot;my-own-virtual-server&quot;&gt;My own (virtual) server!&lt;/h1&gt;
+
+&lt;p&gt;With a VPS I had more processing power then I needed so I started sharing resources with other forum members who also needed more resources then the free hosting service provided. A few of them even started paying me so I bought a new domain, welfarehost.com on June 20, 2009 and started a free and paid web service.&lt;/p&gt;
+
+&lt;div class=&quot;quoted-image&quot; style=&quot;width:px;&quot;&gt;
+    &lt;img src=&quot;/assets/old-websites/welfarehost.png&quot; alt=&quot;Welfare Host&quot; /&gt;
+    &lt;span&gt;Welfare Host&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;p&gt;I still think Welfare Host is a kinda clever name, it was a web host that gave free hosting to anyone who needed it and as it turns out a lot of folks needed it. At one point there were around 1000 websites hosted on it for free and all of that  hosting managed to be supported by a few dozen that upgraded to paid accounts.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;it was a web host that gave free hosting to anyone who needed it&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;My goal had been to create a service with enough users that I could have a few websites hosted for free. And I succeeded in that goal, I didn’t pay for hosting for years. I actually exceeded that goal and was paid for hosting that I also used.&lt;/p&gt;
+
+&lt;p&gt;This project kept expanding and at some point someone pointed out that they didn’t like the sound of being on and paying for welfare so I changed names and bought chemicalservers.com on Jan 30, 2010.&lt;/p&gt;
+
+&lt;div class=&quot;quoted-image&quot; style=&quot;width:px;&quot;&gt;
+    &lt;img src=&quot;/assets/old-websites/chemicalservers.png&quot; alt=&quot;Chemical Servers&quot; /&gt;
+    &lt;span&gt;Chemical Servers&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;p&gt;This site or one of many variations stayed live for several years. I worked on it in the evenings after school and at night when I probably have been sleeping. At it’s height it has a few thousand users and quite a few paying ones.&lt;/p&gt;
+
+&lt;p&gt;All told, by selling hosting in highschool I probably made a couple thousand dollars. But I wasn’t keeping spreadsheets yet at that age so it’s impossible to say.&lt;/p&gt;
+
+&lt;h1 id=&quot;working-for-a-web-host&quot;&gt;Working for a Web Host&lt;/h1&gt;
+
+&lt;p&gt;After I graduated High School in 2011 I moved and started at [Old Dominion University[(https://odu.edu/). I also got a part time job at &lt;a href=&quot;https://www.inmotionhosting.com/&quot;&gt;InMotionHosting&lt;/a&gt; as a support rep. When I started there I closed down ChemicalServers as a paid service and converted it be a free user only service so that I wouldn’t have any conflicts of interest with my new employer.&lt;/p&gt;
+
+&lt;p&gt;Working at InMotion was a perfect job for me at the time. I already knew all of the ins and outs of linux web servers so it was a breeze. I wound up being their youngest hire and stayed for about 3 years.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;I already knew all of the ins and outs of linux web servers so it was a breeze&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;I never would have gotten this job without prior experience and that experience came from working on ChemicalServers. With that experience I was able to push the limits of the job and was often a top performer. I was independent at 18, paying for school without taking on debt. Such a stellar gig.&lt;/p&gt;
+
+&lt;h1 id=&quot;fast-forward-to-2020&quot;&gt;Fast Forward to 2020&lt;/h1&gt;
+
+&lt;p&gt;It’s been 11 since I bought welfarehost.com and found my first users and although I let that domain expire long ago the project persisted as chemicalservers.com. Until this year. Because of the pandemic I’ve had time to revisit old projects and tidy them up and in this case it’s time to close the chapter.&lt;/p&gt;
+
+&lt;p&gt;Last month I contacted the last dozen users that were still hosting sites and helped them migrate to other services. With that done, and no more users relying on me I’m planning to let the domain (chemicalservers.com) expire on January 30, 2021.&lt;/p&gt;
+
+&lt;p&gt;These projects and the experiences from them over the last decade have taught me more then any education or job and I can’t imagine my life today without it. To all the friends, family, coworkers, users, and customers who were some part of this along the way. Thank you.&lt;/p&gt;
+</description>
+        <pubDate>Fri, 12 Jun 2020 08:00:00 +0000</pubDate>
+        <link>https://meh.dev/era-of-hosting</link>
+        <guid isPermaLink="true">https://meh.dev/era-of-hosting</guid>
+        
+        <category>Retro</category>
+        
+        <category>Hosting</category>
+        
+      </item>
+    
+      <item>
+        <title>Deploying to maven central with gradle maven plugin</title>
+        <description>&lt;p&gt;When building new projects I generally want to install the bare minimum and then build. The defaults on &lt;a href=&quot;https://central.sonatype.org/pages/gradle.html&quot;&gt;Sonatype’s website for deploying to OSSRH with Gradle&lt;/a&gt; modify the build configuration and causes the build to fail if you don’t have credentials set. Building without credentials can be useful for projects which have other contributors who may not be involved in the signing or publishing of artifacts. This post shows what should be changed included in your &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;gradle.build&lt;/code&gt; file in order to do both.&lt;/p&gt;
+
+&lt;h2 id=&quot;errors-encountered&quot;&gt;Errors encountered&lt;/h2&gt;
+
+&lt;p&gt;The upload task need to be modified to allow builds without any signing credentials to avoid these two errors by just doing less.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Could not get unknown property 'ossrhUsername' for object of type org.gradle.api.publication.maven.internal.deployer.DefaultGroovyMavenDeployer.&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;This error is because the ‘ossrhUsername’ variable is unset.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Cannot perform signing task ':signArchives' because it has no configured signatory&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;And this one is because the username/password is set but empty.&lt;/p&gt;
+
+&lt;h2 id=&quot;complete-example-buildgradle&quot;&gt;Complete Example build.gradle&lt;/h2&gt;
+
+&lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;c1&quot;&gt;// Apply Plugins&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;apply&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;plugin:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'java'&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;apply&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;plugin:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'maven'&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;apply&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;plugin:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'signing'&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// Metadata Definition&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;group&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;com.example.applications&quot;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;archivesBaseName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;example-application&quot;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;version&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;1.4.7&quot;&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;tasks&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;withType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;JavaCompile&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;options&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;encoding&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'UTF-8'&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// Create Jar Files&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;task&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;javadocJar&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;type:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Jar&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;classifier&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'javadoc'&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;javadoc&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;task&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;sourcesJar&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;type:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Jar&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;classifier&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'sources'&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sourceSets&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;allSource&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;artifacts&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;archives&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;javadocJar&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sourcesJar&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// Signing and upload&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;signing&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;required&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;gradle&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;taskGraph&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;hasTask&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;uploadArchives&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;sign&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;configurations&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;archives&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;uploadArchives&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;repositories&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;mavenDeployer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;beforeDeployment&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;MavenDeployment&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;deployment&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;signing&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;signPom&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;deployment&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+      &lt;span class=&quot;n&quot;&gt;repository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;url:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;https://oss.sonatype.org/service/local/staging/deploy/maven2/&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;authentication&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;userName:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;findProperty&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'ossrhUsername'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;password:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;findProperty&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'ossrhPassword'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
+      &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+      &lt;span class=&quot;n&quot;&gt;snapshotRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;url:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;https://oss.sonatype.org/content/repositories/snapshots/&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;authentication&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;userName:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;findProperty&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'ossrhUsername'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;password:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;findProperty&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'ossrhPassword'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
+      &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+      &lt;span class=&quot;n&quot;&gt;pom&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;project&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Example Application'&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;packaging&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'jar'&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// optionally artifactId can be defined here  &lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;description&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'A application used as an example on how to set up pushing  its components to the Central Repository.'&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'http://www.example.com/example-application'&lt;/span&gt;
+
+        &lt;span class=&quot;n&quot;&gt;scm&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+          &lt;span class=&quot;n&quot;&gt;connection&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'scm:svn:http://foo.googlecode.com/svn/trunk/'&lt;/span&gt;
+          &lt;span class=&quot;n&quot;&gt;developerConnection&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'scm:svn:https://foo.googlecode.com/svn/trunk/'&lt;/span&gt;
+          &lt;span class=&quot;n&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'http://foo.googlecode.com/svn/trunk/'&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+        &lt;span class=&quot;n&quot;&gt;licenses&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+          &lt;span class=&quot;n&quot;&gt;license&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'The Apache License, Version 2.0'&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'http://www.apache.org/licenses/LICENSE-2.0.txt'&lt;/span&gt;
+          &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+        &lt;span class=&quot;n&quot;&gt;developers&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+          &lt;span class=&quot;n&quot;&gt;developer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'jspaetzel'&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'John Spaetzel'&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;email&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'john@example.com'&lt;/span&gt;
+          &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+      &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// Project Dependencies&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;repositories&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;mavenCentral&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;dependencies&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{}&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;configuration&quot;&gt;Configuration&lt;/h2&gt;
+
+&lt;p&gt;When you are ready to upload you’ll also need the credentials for signing in a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;gradle.properties&lt;/code&gt; file.&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;s&quot;&gt;signing.keyId=YourKeyId&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;signing.password=YourPublicKeyPassword&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;signing.secretKeyRingFile=PathToYourKeyRingFile&lt;/span&gt;
+
+&lt;span class=&quot;s&quot;&gt;ossrhUsername=your-jira-id&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;ossrhPassword=your-jira-password&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+</description>
+        <pubDate>Mon, 27 Apr 2020 08:00:00 +0000</pubDate>
+        <link>https://meh.dev/deploying-to-maven-central-with-gradle-maven-plugin</link>
+        <guid isPermaLink="true">https://meh.dev/deploying-to-maven-central-with-gradle-maven-plugin</guid>
+        
+        <category>CI</category>
+        
+        <category>Gradle</category>
+        
+        <category>Java</category>
+        
+        <category>Maven</category>
+        
+      </item>
+    
+      <item>
+        <title>Publishing private composer packages to Artifactory with Jenkins</title>
+        <description>&lt;p&gt;This is a quick guide for how to publish a custom Composer package to Artifactory with Jenkins in a way that behaves similarly to Packagist. The version will come from a git tag without needing to update the composer.json file.&lt;/p&gt;
+
+&lt;h2 id=&quot;configuration&quot;&gt;Configuration&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Setup the &lt;a href=&quot;https://www.jfrog.com/confluence/display/JFROG/Jenkins+Artifactory+Plug-in&quot;&gt;Jenkins Artifactory Plug-in&lt;/a&gt;, this will make things easier since you wont need to manage credentials or make http requests directly from the pipeline.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Enable tags as a “Branch Source” in Jenkins. For Github this is under the folder or project settings. “Discover tags” should be an enabled behavior. If this isn’t set you may not see tags be built in Jenkins.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Create a local Composer repository in Artifactory. &lt;a href=&quot;https://www.jfrog.com/confluence/display/JFROG/PHP+Composer+Repositories&quot;&gt;See the JFrog documentation for how to create&lt;/a&gt;.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;composerjson&quot;&gt;composer.json&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Do not specify a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&quot;version&quot;&lt;/code&gt;, it will be populated by Jenkins via a git tag.&lt;/li&gt;
+  &lt;li&gt;Include &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&quot;archive&quot;&lt;/code&gt; options since you probably do not want to push up the vendor folder or other things that shouldn’t be part of a package. For instance I exclude tests since consumers of my package wont be running tests, I only need them during CI and development.
+    &lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nl&quot;&gt;&quot;archive&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+   &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;exclude&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/vendor&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/build&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;**/Tests/*&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;archive-creation-in-jenkinsfile&quot;&gt;Archive creation in Jenkinsfile&lt;/h2&gt;
+&lt;p&gt;When creating an archive, we can use the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$TAG_NAME&lt;/code&gt; which is supplied by Jenkins. You should change &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;example&lt;/code&gt; to the name of your package.&lt;/p&gt;
+&lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;n&quot;&gt;stage&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Create Archive&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;when&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;tag&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'*'&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;steps&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;sh&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;php composer.phar archive --format=zip --dir=build --file=example-$TAG_NAME&quot;&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;archiveArtifacts&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;artifacts:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'build/*.zip'&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Note: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;archiveArtifacts&lt;/code&gt; only archives the artifact to Jenkins, this is optional and can be left out if you only want to push the archive to Artifactory.&lt;/p&gt;
+
+&lt;h2 id=&quot;publishing-to-artifactory-from-your-jenkinsfile&quot;&gt;Publishing to Artifactory from your Jenkinsfile&lt;/h2&gt;
+&lt;p&gt;When publishing it’s possible to set the version using a property. Since we are using the plugin and we’re providing a &lt;a href=&quot;https://www.jfrog.com/confluence/display/JFROG/Using+File+Specs&quot;&gt;file spec&lt;/a&gt;  we’ll pass it in as a prop. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&quot;props&quot;: &quot;composer.version=$TAG_NAME&quot;&lt;/code&gt;. If we weren’t using the plugin it would be specified as a url query variable like this: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;?properties=composer.version=$TAG_NAME&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;In the target, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;composer-local&lt;/code&gt; is the name of my local Composer repository in Artifactory. Change that to what yours is named and change &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;example&lt;/code&gt; to the name of your package or other path where you want the package published. Do not forget the trailing &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/&lt;/code&gt; in the target otherwise it will become the filename.&lt;/p&gt;
+
+&lt;p&gt;Publishing stage&lt;/p&gt;
+&lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;n&quot;&gt;stage&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Publish&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;when&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;tag&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'*'&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;steps&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;script&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;kt&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;server&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Artifactory&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;server&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'artifactory'&lt;/span&gt;
+            &lt;span class=&quot;kt&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;buildInfo&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;upload&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;spec:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&quot;&quot;{
+                &quot;files&quot;: [
+                    {
+                        &quot;pattern&quot;: &quot;${env.WORKSPACE}/build/*.zip&quot;,
+                        &quot;target&quot;: &quot;composer-local/example/&quot;,
+                        &quot;props&quot;: &quot;composer.version=$TAG_NAME&quot;
+                    }
+                ]
+            }&quot;&quot;&quot;&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;publishBuildInfo&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;buildInfo&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+</description>
+        <pubDate>Wed, 22 Apr 2020 08:00:00 +0000</pubDate>
+        <link>https://meh.dev/publish-private-composer-package-to-artifactory-with-jenkins</link>
+        <guid isPermaLink="true">https://meh.dev/publish-private-composer-package-to-artifactory-with-jenkins</guid>
+        
+        <category>CI</category>
+        
+        <category>PHP</category>
+        
+        <category>Composer</category>
+        
+        <category>Artifactory</category>
+        
+        <category>Jenkins</category>
+        
+      </item>
+    
+      <item>
+        <title>Documentation driven development</title>
+        <description>&lt;p&gt;The thing that makes good libraries stand-out is excellent documentation.&lt;/p&gt;
+
+&lt;p&gt;Well named verbose functions and class names can sometimes be effective in automatically generating detailed documentation which can take you far. But that’s only one critical aspect of documentation.&lt;/p&gt;
+
+&lt;h2 id=&quot;types-of-documentation&quot;&gt;Types of Documentation&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;Reference&lt;/li&gt;
+  &lt;li&gt;Examples&lt;/li&gt;
+  &lt;li&gt;Guides&lt;/li&gt;
+  &lt;li&gt;Communication&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;These are all important but most of the time engineers focus on just one of these points.Reference documentation which is the easiest to create and maintain by being generated from code.&lt;/p&gt;
+
+&lt;p&gt;The nice thing about Reference documentation is that it’s comprehensive and always up to date. The place that it falls short is when demonstrating how the code connects to the business. It also falls short in detailing processes related to the code in order to maintain and run an application.&lt;/p&gt;
+
+&lt;p&gt;Examples help fill one gap by demonstrating how the code relates to the business. Examples can add domain keywords which can be found when searching. Those keywords are important since outside engineering different terminology is often used. New developers who don’t have as much context can use examples to see how abstract concepts are related.&lt;/p&gt;
+
+&lt;p&gt;Guides serve a different purpose and can be used to fill gaps in automation. In an ideal world your installation guide might just be:  Run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;./install.sh&lt;/code&gt; to install the application.&lt;/p&gt;
+
+&lt;p&gt;However in reality you may have some additional pre-requisites that are not part of the installer. For example a simple installation guide might include instructions for how to generate a specific API key and add that to your system environment before running &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;install.sh&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Communication with stakeholders is just as important as having documentation readily available and when communicating with stakeholders it’s important to be actively transparent. You could broadcast updates to everyone but that’s a recipe for missing important details since more folks are likely to miss messages via email.&lt;/p&gt;
+
+&lt;p&gt;When speaking with stakeholders you most likely don’t need to go into great detail. Stakeholders often want a high level overview. The most important thing for them is not what’s included but rather what things have been intentionally excluded.&lt;/p&gt;
+
+&lt;p&gt;By being actively transparent you can ensure targeted individuals are made aware.&lt;/p&gt;
+
+&lt;p&gt;So fulfill that obligation and write more examples and guides. Send guides to individuals you think they’ll be relevant to, the more often you get it wrong sending things to the wrong individuals the more in-tune you’ll become with who you should send contents to in the future.&lt;/p&gt;
+
+&lt;p&gt;You’re extra effort will pay dividends when other developers don’t need to ask you as many questions and you’ll be able to more easily ramp up new folks who join your team.&lt;/p&gt;
+</description>
+        <pubDate>Tue, 07 Apr 2020 08:00:00 +0000</pubDate>
+        <link>https://meh.dev/documentation-driven-development</link>
+        <guid isPermaLink="true">https://meh.dev/documentation-driven-development</guid>
+        
+        <category>Programming</category>
+        
+      </item>
+    
+      <item>
+        <title>Writing code for other developers</title>
+        <description>&lt;p&gt;The users of code are other developers who will inevitably read and modify that code. Your product is code and you should do some product analysis when writing new code. It should be optimized to be usable by the subset of developers who will later read that code.&lt;/p&gt;
+
+&lt;h1 id=&quot;who-are-your-users&quot;&gt;Who are your users?&lt;/h1&gt;
+
+&lt;p&gt;Who is going to work on your code next is important to consider, it should influence and shape what’s written. Consider what knowledge other developers working with your code have already and target the lowest of your expectations.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;E.g. In a large Java codebase with no functional paradigms. You probably shouldn’t casually start using higher-order functions.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;So who’s going to use it?&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Programming nerds?&lt;/li&gt;
+  &lt;li&gt;Academics?&lt;/li&gt;
+  &lt;li&gt;Recent college graduates?&lt;/li&gt;
+  &lt;li&gt;Bootcamp students?&lt;/li&gt;
+  &lt;li&gt;Web developers?&lt;/li&gt;
+  &lt;li&gt;Your mother?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Most of the time you’re writing code for the “average developer” and the lowest common denominator of an average developer is a recent college graduate. Think about yourself from years ago. Which concepts did you understand when you graduated and for the first couple years afterwards. Write code for that version of yourself. If that version can figure out how the code works then anyone can.&lt;/p&gt;
+
+&lt;h1 id=&quot;consider-the-type-of-code&quot;&gt;Consider the type of code&lt;/h1&gt;
+
+&lt;p&gt;Not all code is created equally. You have a lot more or less latitude depending on where the code is in an application.&lt;/p&gt;
+
+&lt;h2 id=&quot;isolated-functions&quot;&gt;Isolated functions&lt;/h2&gt;
+&lt;p&gt;If you are writing a single function that is well defined, independent of domain logic, narrowly scoped, and unit tested then this is as good as it gets. In this scenario you have the most possible freedom to be creative with your implementation. The cyclomatic complexity will be low so whoever looks at it should be able to figure out what’s going on relatively quickly.&lt;/p&gt;
+
+&lt;p&gt;Enjoy the opportunity to write for yourself.&lt;/p&gt;
+
+&lt;h2 id=&quot;business-logic&quot;&gt;Business logic&lt;/h2&gt;
+&lt;p&gt;Code which contains domain knowledge is a key part of an application and for most applications is the part that brings value to a product. Writing this should take into consideration language used by the business, by product managers, and by non-technical users. This code is going to be modified, frequently. Very frequently. Strive for flexibility and simplicity. If you cant grok exactly what it’s doing in a few seconds then consider adding documentation. The faster you and others understand how business logic works the faster you can iterate on features that drive value.&lt;/p&gt;
+
+&lt;h2 id=&quot;developer-apis-and-shared-libraries&quot;&gt;Developer APIs and shared libraries&lt;/h2&gt;
+&lt;p&gt;The best libraries are the ones that do what you want them to do and then get out of the way. Look at a few libraries that you LOVE and think about why you like them vs other libraries that do the same thing but for some reason just aren’t as good. Also check a few of the most popular libraries and consider what attributes may account for their stickiness.&lt;/p&gt;
+
+&lt;p&gt;Depending on the type of developers using your library how you write it may vary quite a lot.&lt;/p&gt;
+
+&lt;p&gt;In the case of libraries you need to optimize separately for two groups of people. The developers using the library via it’s public interfaces. And other developers who may want to contribute to the library. Contributors will have substantially more experience then end user developers and you can assume they’ll be willing to spend more time learning in order to contribute back to the library.&lt;/p&gt;
+
+&lt;h1 id=&quot;tldr&quot;&gt;TLDR&lt;/h1&gt;
+
+&lt;p&gt;Write code for the least experienced developer on your team because they need to be able to work on it too.&lt;/p&gt;
+</description>
+        <pubDate>Sat, 22 Feb 2020 08:00:00 +0000</pubDate>
+        <link>https://meh.dev/writing-code-for-other-developers</link>
+        <guid isPermaLink="true">https://meh.dev/writing-code-for-other-developers</guid>
+        
+        <category>Programming</category>
+        
+      </item>
+    
   </channel>
 </rss>

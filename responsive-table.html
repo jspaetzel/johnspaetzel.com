@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Responsive Tables with CSS</title>
+  <meta name="description" content="Vertical alignment in CSS can be difficult, one of the strategies for doing this is to use vertical-align which allows vertical alignment with an inline or t...">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="https://meh.dev/responsive-table">
+  <link rel="alternate" type="application/rss+xml" title="meh.dev" href="https://meh.dev/feed.xml">
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+  <div class="wrapper">
+    <a class="site-title" href="/">
+      <img src="https://0.gravatar.com/avatar/ccf00de89ec54577fb9fd612358a9808?s=56">
+      meh.dev
+    </a>
+    <nav class="site-nav">
+      <a class="page-link" href="/cv">CV</a>
+      <a class="page-link" href="/archive">Archive</a>
+    </nav>
+  </div>
+</header>
+
+
+    <div class="wrapper">
+      
+
+<article class="post content-wrapper content-style-green" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Responsive Tables with CSS</h2>
+    <div class="post-meta">
+        <div class="post-meta-text">
+          <div class="post-meta-icon">
+            <i class="far fa-calendar"></i>
+          </div>
+          Posted on 
+          <time datetime="2019-10-13T08:00:00+00:00" itemprop="datePublished">
+            Oct 13, 2019
+          </time>
+        </div>
+        
+        
+        
+        
+        
+        <ul class="tag-list">
+          
+          <li class="inline"><a class="tag-list-link" href="/tag/Frontend">Frontend</a></li>
+          
+          <li class="inline"><a class="tag-list-link" href="/tag/Web">Web</a></li>
+          
+          <li class="inline"><a class="tag-list-link" href="/tag/CSS">CSS</a></li>
+          
+        </ul>
+        
+    </div>
+  </header>
+  
+  <div class="post-content" itemprop="articleBody">
+    <p>Vertical alignment in CSS can be difficult, one of the strategies for doing this is to use <code class="language-plaintext highlighter-rouge">vertical-align</code> which allows vertical alignment with an inline or table-cell box.</p>
+
+<p>This can be used with media queries to create a responsive layout which switches between a horizontal and vertical layout depending on the size of the page.</p>
+
+<p>A responsive layout like this is nice for mobile devices because it’ll rearrange between portrait and landscape mode, additionally it adjusts nicely when resizing windows on desktop.</p>
+
+<h1 id="demo">Demo</h1>
+<p><img src="./assets/responsive-table.webp" alt="Example animation" /></p>
+
+<h1 id="horizontal-layout">Horizontal Layout</h1>
+
+<p>A horizontal layout is pretty easy with tables, we just create a div styled as a table</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre><span class="nc">.table</span> <span class="p">{</span>
+    <span class="nl">display</span><span class="p">:</span> <span class="n">table</span><span class="p">;</span>
+    <span class="nl">table-layout</span><span class="p">:</span><span class="nb">fixed</span><span class="p">;</span>
+    <span class="nl">width</span><span class="p">:</span> <span class="m">100%</span><span class="p">;</span>
+    <span class="nl">height</span><span class="p">:</span> <span class="m">100%</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>add a row</p>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre><span class="nc">.row</span> <span class="p">{</span>
+    <span class="nl">display</span><span class="p">:</span> <span class="nb">table-row</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>and add a few cells to the row using <code class="language-plaintext highlighter-rouge">vertical-align</code> to center our content in each cell</p>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre><span class="nc">.cell</span> <span class="p">{</span>
+    <span class="nl">display</span><span class="p">:</span> <span class="nb">table-cell</span><span class="p">;</span>
+    <span class="nl">vertical-align</span><span class="p">:</span> <span class="nb">middle</span><span class="p">;</span>
+    <span class="nl">text-align</span><span class="p">:</span> <span class="nb">center</span><span class="p">;</span>
+    <span class="nl">overflow</span><span class="p">:</span> <span class="nb">hidden</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h1 id="changing-to-a-vertical-layout">Changing to a vertical layout</h1>
+
+<p>To change from a row with cells to a single column with rows we just need to do a basic pivot. In CSS we’ll change our row into a sub-table, each cell into a new row, and a new object for the new cells.</p>
+
+<ul>
+  <li>table &gt; row   &gt; cells</li>
+  <li>table &gt; table &gt; rows  &gt; cells</li>
+</ul>
+
+<h1 id="full-code-sample">Full Code Sample</h1>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+</pre></td><td class="rouge-code"><pre><span class="nt">&lt;html&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;style </span><span class="na">type=</span><span class="s">"text/css"</span><span class="nt">&gt;</span>
+        <span class="nt">html</span><span class="o">,</span> <span class="nt">body</span> <span class="p">{</span>
+            <span class="nl">height</span><span class="p">:</span> <span class="m">100%</span><span class="p">;</span>
+            <span class="nl">margin</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="nc">.container</span> <span class="p">{</span>
+            <span class="nl">display</span><span class="p">:</span> <span class="n">table</span><span class="p">;</span>
+            <span class="nl">table-layout</span><span class="p">:</span><span class="nb">fixed</span><span class="p">;</span>
+            <span class="nl">width</span><span class="p">:</span> <span class="m">100%</span><span class="p">;</span>
+            <span class="nl">height</span><span class="p">:</span> <span class="m">100%</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="nc">.pivot</span> <span class="p">{</span>
+            <span class="nl">display</span><span class="p">:</span> <span class="nb">table-row</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="nc">.column-child</span> <span class="p">{</span>
+            <span class="nl">display</span><span class="p">:</span> <span class="nb">table-cell</span><span class="p">;</span>
+            <span class="nl">vertical-align</span><span class="p">:</span> <span class="nb">middle</span><span class="p">;</span>
+            <span class="nl">text-align</span><span class="p">:</span> <span class="nb">center</span><span class="p">;</span>
+            <span class="nl">overflow</span><span class="p">:</span> <span class="nb">hidden</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">@media</span> <span class="p">(</span><span class="n">max-width</span><span class="p">:</span> <span class="m">500px</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nc">.pivot</span> <span class="p">{</span>
+                <span class="nl">display</span><span class="p">:</span> <span class="n">table</span><span class="p">;</span>
+                <span class="nl">table-layout</span><span class="p">:</span> <span class="nb">fixed</span><span class="p">;</span>
+                <span class="nl">width</span><span class="p">:</span> <span class="m">100%</span><span class="p">;</span>
+                <span class="nl">height</span><span class="p">:</span> <span class="m">100%</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="nc">.column-child</span> <span class="p">{</span>
+                <span class="nl">display</span><span class="p">:</span> <span class="nb">table-row</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="nc">.row-child</span> <span class="p">{</span>
+                <span class="nl">display</span><span class="p">:</span> <span class="nb">table-cell</span><span class="p">;</span>
+                <span class="nl">vertical-align</span><span class="p">:</span> <span class="nb">middle</span><span class="p">;</span>
+                <span class="nl">text-align</span><span class="p">:</span> <span class="nb">center</span><span class="p">;</span>
+                <span class="nl">overflow</span><span class="p">:</span> <span class="nb">hidden</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="nc">.circle</span> <span class="p">{</span>
+            <span class="nl">height</span><span class="p">:</span> <span class="m">100px</span><span class="p">;</span>
+            <span class="nl">width</span><span class="p">:</span> <span class="m">100px</span><span class="p">;</span>
+            <span class="nl">margin</span><span class="p">:</span> <span class="m">0</span> <span class="nb">auto</span><span class="p">;</span>
+            <span class="nl">border-radius</span><span class="p">:</span> <span class="m">50%</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="nt">&lt;/style&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pivot"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"column-child"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"row-child"</span><span class="nt">&gt;</span>
+                    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"circle"</span> <span class="na">style=</span><span class="s">"background: red;"</span><span class="nt">&gt;&lt;/div&gt;</span>
+                <span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"column-child"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"row-child"</span><span class="nt">&gt;</span>
+                    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"circle"</span> <span class="na">style=</span><span class="s">"background: blue;"</span><span class="nt">&gt;&lt;/div&gt;</span>
+                <span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+
+    
+
+    
+    
+  </div>
+
+  
+
+  <div id="disqus_thread"></div>
+  <script>
+  var disqus_config = function () {
+    this.page.url = "https://meh.dev/responsive-table";
+    this.page.identifier = '/responsive-table';
+  };
+  (function() {
+  var d = document, s = d.createElement('script');
+  s.src = 'https://jspaetzel.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+  })();
+  </script>
+  <noscript>Please enable JavaScript to view comments</noscript>
+  <script id="dsq-count-scr" src="//jspaetzel.disqus.com/count.js" async></script>
+</article>
+
+
+    </div>
+
+    <footer class="footer">
+    <div class="copyright">© 2021  <i class="fas fa-heart"></i>  John Spaetzel</div>
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+<script>
+  WebFont.load({
+    google: {
+      families: ['Josefin Sans', 'Noto Sans', 'Roboto Mono', 'Material Icons']
+    }
+  });
+</script>
+<script src="https://kit.fontawesome.com/ea17bff308.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-W3G88JG6ZH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-W3G88JG6ZH');
+</script>
+
+  </body>
+
+</html>

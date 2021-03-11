@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Drop-in Github Action Jekyll Builds</title>
+  <meta name="description" content="Github Actions are a powerful way to automate your CI/CD pipeline. I’ve experimented with using it to build this website and came up with an easy to use scri...">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="https://meh.dev/dropin-jekyll-build-github">
+  <link rel="alternate" type="application/rss+xml" title="meh.dev" href="https://meh.dev/feed.xml">
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+  <div class="wrapper">
+    <a class="site-title" href="/">
+      <img src="https://0.gravatar.com/avatar/ccf00de89ec54577fb9fd612358a9808?s=56">
+      meh.dev
+    </a>
+    <nav class="site-nav">
+      <a class="page-link" href="/cv">CV</a>
+      <a class="page-link" href="/archive">Archive</a>
+    </nav>
+  </div>
+</header>
+
+
+    <div class="wrapper">
+      
+
+<article class="post content-wrapper content-style-green" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Drop-in Github Action Jekyll Builds</h2>
+    <div class="post-meta">
+        <div class="post-meta-text">
+          <div class="post-meta-icon">
+            <i class="far fa-calendar"></i>
+          </div>
+          Posted on 
+          <time datetime="2019-12-04T08:00:00+00:00" itemprop="datePublished">
+            Dec 4, 2019
+          </time>
+        </div>
+        
+        
+        
+          <div class="post-meta-text">
+            <div class="post-meta-icon">
+              <i class="far fa-calendar-check"></i>
+            </div>
+            Edited on 
+            <time datetime="2021-03-11T10:12:44+00:00" itemprop="dateModified">
+              Mar 11, 2021
+            </time>
+          </div>
+          
+        
+        
+        
+        <ul class="tag-list">
+          
+          <li class="inline"><a class="tag-list-link" href="/tag/CI">CI</a></li>
+          
+          <li class="inline"><a class="tag-list-link" href="/tag/Jekyll">Jekyll</a></li>
+          
+          <li class="inline"><a class="tag-list-link" href="/tag/Github Actions">Github Actions</a></li>
+          
+        </ul>
+        
+    </div>
+  </header>
+  
+  <div class="post-content" itemprop="articleBody">
+    <p>Github Actions are a powerful way to automate your CI/CD pipeline. I’ve experimented with using it to build this website and came up with an easy to use script that’s a drop in way of building and deploying jekyll to github pages.</p>
+
+<p>This script has a couple assumptions:</p>
+<ul>
+  <li>Jekyll builds the site into the <code class="language-plaintext highlighter-rouge">_site</code> directory</li>
+  <li>You commit un-built code to <code class="language-plaintext highlighter-rouge">master</code></li>
+  <li>You want to publish to the <code class="language-plaintext highlighter-rouge">gh-pages</code> branch</li>
+</ul>
+
+<p>Because Github Actions already have pre-defined environment variables related to the current repository you only need to configure a personal access token to get this working.</p>
+
+<h2 id="configuring-a-personal-access-token">Configuring a personal access token</h2>
+<p>Configure a personal access token at <a href="https://github.com/settings/tokens">https://github.com/settings/tokens</a>
+and give it “Full control of private repositories”</p>
+
+<p>Add the new personal access token your repository as a secret named <strong>GITHUB_PAT</strong></p>
+
+<h2 id="github-yaml-actions-script">Github yaml actions script</h2>
+<p>This file should be added like: <code class="language-plaintext highlighter-rouge">.github/workflows/build_and_deploy.yml</code></p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+</pre></td><td class="rouge-code"><pre><span class="na">name</span><span class="pi">:</span> <span class="s">CI</span>
+
+<span class="na">on</span><span class="pi">:</span>
+  <span class="na">push</span><span class="pi">:</span>
+    <span class="na">branches</span><span class="pi">:</span> 
+      <span class="pi">-</span> <span class="s">master</span>
+
+<span class="na">jobs</span><span class="pi">:</span>
+  <span class="na">build</span><span class="pi">:</span>
+    <span class="na">runs-on</span><span class="pi">:</span> <span class="s">ubuntu-latest</span>
+    <span class="na">steps</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/checkout@master</span>
+      <span class="pi">-</span> <span class="na">uses</span><span class="pi">:</span> <span class="s">ruby/setup-ruby@v1</span>
+        <span class="na">with</span><span class="pi">:</span>
+          <span class="na">ruby-version</span><span class="pi">:</span> <span class="s1">'</span><span class="s">2.7'</span>
+          <span class="na">bundler-cache</span><span class="pi">:</span> <span class="no">true</span>
+      <span class="pi">-</span> <span class="na">run</span><span class="pi">:</span> <span class="s">bundle exec jekyll build</span>
+      <span class="pi">-</span> <span class="na">run</span><span class="pi">:</span> <span class="pi">|</span>
+          <span class="s">git clone "https://${GITHUB_PAT}@github.com/${GITHUB_REPOSITORY}.git"</span>
+          <span class="s">cd $(basename "${GITHUB_REPOSITORY}")</span>
+          <span class="s">git config user.name "Gitub Actions"</span>
+          <span class="s">git config user.email ""</span>
+          <span class="s">rsync -avz --delete --exclude '.git*' ../_site/ .</span>
+          <span class="s">touch .nojekyll</span>
+          <span class="s">git add -A .</span>
+          <span class="s">git commit -m "Generated Jekyll site by Github Action - ${GITHUB_ACTION}"</span>
+          <span class="s">git push --force "https://${GITHUB_PAT}@github.com/${GITHUB_REPOSITORY}.git" HEAD:gh-pages</span>
+        <span class="na">env</span><span class="pi">:</span> 
+          <span class="na">GITHUB_PAT</span><span class="pi">:</span> <span class="s">$</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>With this yaml added to the repo your site should get built and deployed automatically to github pages.</p>
+
+<p>This script was initially pretty slow for my site which requires several native extensions to build. With the new <code class="language-plaintext highlighter-rouge">ruby/setup-ruby@v1</code> github action the speed has increased substantially since the ruby extensions are now cached between builds!</p>
+
+
+    
+
+    
+    
+  </div>
+
+  
+
+  <div id="disqus_thread"></div>
+  <script>
+  var disqus_config = function () {
+    this.page.url = "https://meh.dev/dropin-jekyll-build-github";
+    this.page.identifier = '/dropin-jekyll-build-github';
+  };
+  (function() {
+  var d = document, s = d.createElement('script');
+  s.src = 'https://jspaetzel.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+  })();
+  </script>
+  <noscript>Please enable JavaScript to view comments</noscript>
+  <script id="dsq-count-scr" src="//jspaetzel.disqus.com/count.js" async></script>
+</article>
+
+
+    </div>
+
+    <footer class="footer">
+    <div class="copyright">© 2021  <i class="fas fa-heart"></i>  John Spaetzel</div>
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+<script>
+  WebFont.load({
+    google: {
+      families: ['Josefin Sans', 'Noto Sans', 'Roboto Mono', 'Material Icons']
+    }
+  });
+</script>
+<script src="https://kit.fontawesome.com/ea17bff308.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-W3G88JG6ZH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-W3G88JG6ZH');
+</script>
+
+  </body>
+
+</html>

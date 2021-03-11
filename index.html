@@ -1,8 +1,38 @@
----
-layout: default
----
+<!DOCTYPE html>
+<html>
 
-<article class="content-wrapper content-style-green">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>meh.dev</title>
+  <meta name="description" content="">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="https://meh.dev/">
+  <link rel="alternate" type="application/rss+xml" title="meh.dev" href="https://meh.dev/feed.xml">
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+  <div class="wrapper">
+    <a class="site-title" href="/">
+      <img src="https://0.gravatar.com/avatar/ccf00de89ec54577fb9fd612358a9808?s=56">
+      meh.dev
+    </a>
+    <nav class="site-nav">
+      <a class="page-link" href="/cv">CV</a>
+      <a class="page-link" href="/archive">Archive</a>
+    </nav>
+  </div>
+</header>
+
+
+    <div class="wrapper">
+      <article class="content-wrapper content-style-green">
     <div class="page-content">
         <div class="item">
             <h2>About Me</h2>
@@ -11,13 +41,38 @@ layout: default
             <br/>
             <h2>My Latest Posts & Projects</h2>
             <ul class="post-list">
-                {% assign sortedPosts = site.posts | date: "%Y-%m-%d %H:%M" | sort: 'edited' | reverse %}
-                {% for post in sortedPosts limit:6 %}
+                
+                
                 <li>
-                    <div class="post-list-meta">{{ post.edited | date: "%b %-d, %Y" }}</div>
-                    <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+                    <div class="post-list-meta">Mar 11, 2021</div>
+                    <a href="/dropin-jekyll-build-github">Drop-in Github Action Jekyll Builds</a>
                 </li>
-                {% endfor %}
+                
+                <li>
+                    <div class="post-list-meta">Mar 11, 2021</div>
+                    <a href="/php-static-analysis-tools">The top PHP static code analysis tools of 2021</a>
+                </li>
+                
+                <li>
+                    <div class="post-list-meta">Jan 25, 2021</div>
+                    <a href="/2020-retro">2020 Retrospective</a>
+                </li>
+                
+                <li>
+                    <div class="post-list-meta">Dec 8, 2020</div>
+                    <a href="/maui-during-pandemic">I visited Maui during the pandemic</a>
+                </li>
+                
+                <li>
+                    <div class="post-list-meta">Nov 14, 2020</div>
+                    <a href="/what-i-use">What i use</a>
+                </li>
+                
+                <li>
+                    <div class="post-list-meta">Nov 14, 2020</div>
+                    <a href="/linuxisms">Linuxisms</a>
+                </li>
+                
                 <br>
                 <a href="/archive">Or see the full archive...</a>
             </ul>
@@ -36,3 +91,31 @@ layout: default
 </article>
 <script src="/js/cookie.util.js"></script>
 <script src="/js/hello.rotate.js"></script>
+    </div>
+
+    <footer class="footer">
+    <div class="copyright">© 2021  <i class="fas fa-heart"></i>  John Spaetzel</div>
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+<script>
+  WebFont.load({
+    google: {
+      families: ['Josefin Sans', 'Noto Sans', 'Roboto Mono', 'Material Icons']
+    }
+  });
+</script>
+<script src="https://kit.fontawesome.com/ea17bff308.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-W3G88JG6ZH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-W3G88JG6ZH');
+</script>
+
+  </body>
+
+</html>
